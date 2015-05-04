@@ -29,9 +29,10 @@ module.exports = function(passport){
 	// 	failureFlash : true  
 	// }));
 
-	router.post('/login', function(req, res, next) {
+	router.post('/signin', function(req, res, next) {
 		//console.log(req.body);
 		User.findOne({ 'username' :  req.param('username') }, function(err, user){
+                    console.log(req.param('username'));
                     // In case of any error, return using the done method
                     if (err){
                         console.log('Error in SignIn: '+err);
@@ -41,7 +42,8 @@ module.exports = function(passport){
                     if (user) {
                     	if(user.password == req.param('password')){
                     		console.log("Okey");
-                    		res.send(user);
+                    		//res.send(user);
+                            res.json(user);
                     	}
                     	else {
                     		console.log("incorrected password");

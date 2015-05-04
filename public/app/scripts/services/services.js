@@ -1,6 +1,4 @@
-'use strict';
-var wunderlistServices = angular.module('wunderlistServices', [
-]);
+//'use strict';
 
 // angular.module('webrtcServices', ['ngResource'])
 // //.factory('feed'
@@ -23,13 +21,17 @@ var wunderlistServices = angular.module('wunderlistServices', [
 // 	}
 // );
 
-wunderlistServices.service('UserDel', ['$http', '$q',
+var registrationServices = angular.module('registrationServices', []);
+//var enterenceServices = angular.module('enterenceServices', []);
+
+registrationServices.service('User', ['$http', '$q',
  function ($http, $q) {
  	return ({
- 		addUser: addUser
+ 		registration: registration,
+ 		enterence: enterence
  	});
 
- 	function addUser (username, firstname, lastname, useremail, password, country) {
+ 	function registration (username, firstname, lastname, useremail, password, country) {
  		return $http({
  			method: 'post',
  			url: 'signup',
@@ -40,6 +42,24 @@ wunderlistServices.service('UserDel', ['$http', '$q',
  				lastname:lastname,
  				password: password,
  				country: country
+ 			}
+ 		});
+ 	}
+// }]);
+
+// enterenceServices.service('User', ['$http', '$q',
+//  function ($http, $q) {
+//  	return ({
+//  		enterence: enterence
+//  	});
+
+ 	function enterence (username, password) {
+ 		return $http({
+ 			method: 'post',
+ 			url: 'signin',
+ 			params: {
+ 				useremail: username,
+ 				password: password
  			}
  		});
  	}

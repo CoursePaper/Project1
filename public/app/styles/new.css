@@ -13,35 +13,54 @@ section > h2 {
  #l {
   display: inline-block;
  }
- #r {
-  float: right;
+ /*#r {
   margin-top: 150px;
- }
- .userinfo img {
+  max-width: 100px
+ }*/
+ .login-form img {
   display: block;
   height: 300px;
   width: 200px;
   border-radius: 15px;
-  border: 2px solid #1bc5a3;
+  border: 2px solid #6D6F72;
   margin: 5px;
  }
  .uinfo {
-  margin-left: 20px;
+  display: inline-block;
+  margin-top: -300px;
+  margin-right: 20px;
+  float: right;
+ }
+ .userinfo p {
+  text-align: right;
  }
  .userinfo div {
   display: inline-block;
  }
- table {
-  margin: 50px;
-  margin-top: -150px;
-  color: #fff;
-  border-radius: 6px;
-  background-color: #34495e;
-  float: left;
-  width: 580px;
+ .b {
+  min-height: 400px;
  }
-table thead tr {
-  border-bottom: 1px solid #fff;
+ table {
+  float: right;
+/*  margin: 50px;
+  margin-top: -150px;*/
+  color: black;
+  background-color: #edeff1;
+  border-radius: 6px;
+  float: left;
+  /*width: 580px;*/
+  /*height: 474px;*/
+  height: 100%;
+  width: 100%;
+ }
+ table thead tr {
+  border-bottom: 1px solid #fff;  
+ }
+table thead tr h4 {
+ color: #6D6F72;
+}
+table thead tr:nth-child(2) {
+  color: #A2A7AC;
  }
  td {
   height: 10px;
@@ -709,7 +728,7 @@ abbr[data-original-title] {
 blockquote {
   padding: 0 0 0 16px;
   margin: 0 0 30px;
-  border-left: 3px solid #e7e9ec;
+  border-left: 3px solid #A2A7AC;
   }
 blockquote p {
   margin-bottom: .4em;

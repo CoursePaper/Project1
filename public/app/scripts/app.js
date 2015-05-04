@@ -3,7 +3,8 @@
 angular.module('webrtcV0App', [
   'ngResource',
   'ngRoute',
-  'MainListCtrl'
+  //'eCtrl',
+  'rCtrl'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -24,12 +25,12 @@ angular.module('webrtcV0App', [
         // controller: 'MainCtrl'
       })
       .when('/sin', {
-        templateUrl: '../app/views/signin.html'
-        // controller: 'MainCtrl'
+        templateUrl: '../app/views/signin.html',
+        controller: 'rCtrl'
       })
       .when('/sup', {
         templateUrl: '../app/views/signup.html',
-        controller: 'newUserCtrl'
+        controller: 'rCtrl'
       })
       .when('/main', {
         templateUrl: 'views/main.html'

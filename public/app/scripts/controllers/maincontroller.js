@@ -1,4 +1,4 @@
-// 'use strict';
+//'use strict';
 
 // angular.module('MainCtrl', ['webrtcServices'])
 // 	.controller('MainCtrl', ['$scope', 'feed', '$location', function($scope,feed,$location) {
@@ -80,19 +80,51 @@
 
 // 	//};
 // }]);
-var MainListCtrl = angular.module('MainListCtrl', ['wunderlistServices']);
+var globalUser = {uname: 0,
+				ulname: 0,
+				ufname: 0,
+				ucountry: 0,
+				id: 0};
+var rCtrl = angular.module('rCtrl', ['registrationServices']);
+//var eCtrl = angular.module('eCtrl', ['enterenceServices']);
 
-MainListCtrl.controller('newUserCtrl', ['$location', '$scope', 'UserDel',
-	function ($location, $scope, UserDel) {
+rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
+	function ($location, $scope, User) {
 		$scope.signUp = function () {
-
-			UserDel.addUser($scope.username, $scope.firstname, $scope.lastname,
+			User.registration($scope.username, $scope.firstname, $scope.lastname,
 				$scope.useremail, $scope.password, $scope.country).then(function (data) {
-				console.log(data.data);
-				//console.log(number.number);
-				//$location.path("/users");
+				$location.path('/prof');
+				globalUser.uname = data.data.username;
+				globalUser.ulname = data.data.lastName;
+				globalUser.ufname = data.data.firstName;
+				globalUser.ucountry = data.data.country;
+				globalUser.id = data.data._id;
 				console.log("It's response!");
 			});
-		}
+		};
+		$scope.user = globalUser;
+// 	}
+// ]);
+
+// eCtrl.controller('eCtrl', ['$location', '$scope', 'User',
+// 	function ($location, $scope, User) {
+
+		$scope.signIn = function () {
+			User.enterence($scope.username, $scope.password).then(function (data) {
+				//console.log(data.data);
+				console.log("1133546896486");
+				$location.path('/prof');
+				globalUser.uname = data.data.username;
+				globalUser.ulname = data.data.lastName;
+				globalUser.ufname = data.data.firstName;
+				//globalUser.ucountry = data.data.country;
+				globalUser.id = data.data._id;
+				//$scope.uname = data.data.userName;
+				console.log("It's response!");
+			});
+		};
+		$scope.user = globalUser;
 	}
 ]);
+
+//"C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe" --dbpath "D:\webrtc-v1\Project1\data\db"

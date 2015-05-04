@@ -1,20 +1,22 @@
-<section>
-	<h2>Hello, William!</h2>
+<section ng-controller="rCtrl">
+	<h2>Hello, {{user.uname}}!</h2>
 </section>
-<section class="login-form userinfo" id="l">
+<section class="login-form">
 	<img src="http://upload.wikimedia.org/wikipedia/commons/2/27/Sherman_Profile.png" class="img-rounded img-responsive" />
-	<div class="uinfo">
-		<p><strong>Name:</strong> William</p>
-		<p><strong>Last name:</strong> Sherman</p>
-		<p><strong>Country:</strong> USA</p>
-		<p><strong>Status:</strong> teacher</p>
+	
+	<div class="uinfo" ng-app="webrtcV0App" ng-controller="rCtrl" >
+		<p><strong>User Name:</strong> {{user.uname}}</p>
+		<p><strong>First Name:</strong> {{user.ufname}}</p>
+		<p><strong>Last Name:</strong> {{user.ulname}}</p>
+		<p><strong>Country:</strong> {{user.ucountry}}</p>
 	</div>
 </section>
-<section id="r">
+
+<section class="login-form b">
 	<table>
 		<thead>
 			<tr>
-				<td colspan="5">Timetable</td>
+				<td colspan="5"><h4>Timetable</h4></td>
 			</tr>
 			<tr>
 				<td>№</td>
@@ -74,19 +76,22 @@
 	<ul>
 		<li>
 			<blockquote class="comment">
-				<p><a href="">Vasia</a> Krutoi prepod!!!!11</p>
+				<p><a href="">Vasia</a></p>
+				<p>Krutoi prepod!!!!11</p>
 				<Date>01.01.1001 12:58:93</Date>
 			</blockquote> 
 		</li>
 		<li>
 			<blockquote class="comment">
-				<p><a href="">Vasia</a> Krutoi prepod!!!!11</p>
+				<p><a href="">Vasia</a></p>
+				<p>Krutoi prepod!!!!11</p>
 				<Date>01.01.1001 12:58:93</Date>
 			</blockquote> 
 		</li>
 		<li>
 			<blockquote class="comment">
-				<p><a href="">Vasia</a> Krutoi prepod!!!!11</p>
+				<p><a href="">Vasia</a></p>
+				<p>Krutoi prepod!!!!11</p>
 				<Date>01.01.1001 12:58:93</Date>
 			</blockquote> 
 		</li>
