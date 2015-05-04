@@ -93,13 +93,22 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 		$scope.signUp = function () {
 			User.registration($scope.username, $scope.firstname, $scope.lastname,
 				$scope.useremail, $scope.password, $scope.country).then(function (data) {
-				$location.path('/prof');
-				globalUser.uname = data.data.username;
-				globalUser.ulname = data.data.lastName;
-				globalUser.ufname = data.data.firstName;
-				globalUser.ucountry = data.data.country;
-				globalUser.id = data.data._id;
-				console.log("It's response!");
+				if (data.data == 500) {
+					console.log("sup error");
+					//$location.path('/sup');
+					$('p#error').remove();
+					$('#login-pass').val('');
+					$('<p>Error! Such user name is allready exist!</p>').attr('id','error').insertBefore('div.ln');
+				} else {
+					console.log(data);
+					$location.path('/prof');
+					globalUser.uname = data.data.username;
+					globalUser.ulname = data.data.lastName;
+					globalUser.ufname = data.data.firstName;
+					globalUser.ucountry = data.data.country;
+					globalUser.id = data.data._id;
+					//console.log("It's response!");
+				}				
 			});
 		};
 		$scope.user = globalUser;
@@ -111,16 +120,22 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 
 		$scope.signIn = function () {
 			User.enterence($scope.username, $scope.password).then(function (data) {
-				//console.log(data.data);
-				console.log("1133546896486");
-				$location.path('/prof');
-				globalUser.uname = data.data.username;
-				globalUser.ulname = data.data.lastName;
-				globalUser.ufname = data.data.firstName;
-				//globalUser.ucountry = data.data.country;
-				globalUser.id = data.data._id;
-				//$scope.uname = data.data.userName;
-				console.log("It's response!");
+				if (data.data == 500) {
+					console.log("sin error");
+					$location.path('/sin');
+					$('p#error').remove();
+					$('<p>Error! Invalid user name or password!</p>').attr('id','error').insertBefore('button#login');
+
+				} else {
+					console.log(data);
+					$location.path('/prof');
+					globalUser.uname = data.data.username;
+					globalUser.ulname = data.data.lastName;
+					globalUser.ufname = data.data.firstName;
+					globalUser.ucountry = data.data.country;
+					globalUser.id = data.data._id;
+					console.log("It's response!");
+				}
 			});
 		};
 		$scope.user = globalUser;

@@ -47,12 +47,12 @@ module.exports = function(passport){
                     	}
                     	else {
                     		console.log("incorrected password");
-                    		res.end()
+                    		res.json(500)
                     	}
                         //return done(null, false, req.flash('message','User Already Exists'));
                     } else {
                         console.log("user not found");
-                        res.end();
+                        res.json(500);
                     }
                 });		
 	  // passport.authenticate('login', function(err, user, info) {
@@ -110,9 +110,11 @@ router.post('/signup', function(req, res){
                         console.log('Error in SignUp: '+err);
                         return done(err);
                     }
+                    console.log(req.param('username'));
                     // already exists
                     if (user) {
                         console.log('User already exists with username: '+ user.username);
+                        res.json(500);
                         //return done(null, false, req.flash('message','User Already Exists'));
                     } else {
                         // if there is no user with that email

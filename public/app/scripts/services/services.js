@@ -58,7 +58,7 @@ registrationServices.service('User', ['$http', '$q',
  			method: 'post',
  			url: 'signin',
  			params: {
- 				useremail: username,
+ 				username: username,
  				password: password
  			}
  		});
