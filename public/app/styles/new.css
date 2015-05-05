@@ -13,6 +13,14 @@ section > h2 {
  #l {
   display: inline-block;
  }
+ #inviz {
+  display: none;
+ }
+ #addlesson {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  /*width: 200px;*/
+ }
  /*#r {
   margin-top: 150px;
   max-width: 100px

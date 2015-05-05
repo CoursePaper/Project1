@@ -16,6 +16,10 @@ angular.module('webrtcV0App', [
         templateUrl: '../app/views/profile.html',
         // controller: 'MainCtrl'
       })
+       .when('/less', {
+        templateUrl: '../app/views/lesson.html',
+        controller: 'rCtrl'
+      })
       .when('/cont', {
         templateUrl: '../app/views/contacts.html'
         // controller: 'MainCtrl'

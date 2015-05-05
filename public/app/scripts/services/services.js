@@ -28,7 +28,8 @@ registrationServices.service('User', ['$http', '$q',
  function ($http, $q) {
  	return ({
  		registration: registration,
- 		enterence: enterence
+ 		enterence: enterence,
+ 		addlesson: addlesson
  	});
 
  	function registration (username, firstname, lastname, useremail, password, country) {
@@ -45,21 +46,28 @@ registrationServices.service('User', ['$http', '$q',
  			}
  		});
  	}
-// }]);
 
-// enterenceServices.service('User', ['$http', '$q',
-//  function ($http, $q) {
-//  	return ({
-//  		enterence: enterence
-//  	});
-
- 	function enterence (username, password) {
+	function enterence (username, password) {
  		return $http({
  			method: 'post',
  			url: 'signin',
  			params: {
  				username: username,
  				password: password
+ 			}
+ 		});
+ 	}
+
+ 	function addlesson () {
+ 		return $http({
+ 			method: 'post',
+ 			url: 'addlesson',
+ 			params: {
+ 				studentUserName: studentUserName,
+ 				teacherUserName: teacherUserName,
+ 				languag: languag,
+ 				date: date,
+ 				tim: tim 
  			}
  		});
  	}
