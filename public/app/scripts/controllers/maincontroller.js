@@ -4,7 +4,7 @@ var globalUser = {uname: 0,
 				ulname: 0,
 				ufname: 0,
 				ucountry: 0,
-				id: 0};
+				_id: 0};
 var globalLesson = {
 	studentUserName: 0,
 	teacherUserName: 0,
@@ -33,7 +33,7 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 					globalUser.ulname = data.data.lastName;
 					globalUser.ufname = data.data.firstName;
 					globalUser.ucountry = data.data.country;
-					globalUser.id = data.data._id;
+					globalUser._id = data.data._id;
 					//console.log("It's response!");
 				}				
 			});
@@ -60,7 +60,7 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 					globalUser.ulname = data.data.lastName;
 					globalUser.ufname = data.data.firstName;
 					globalUser.ucountry = data.data.country;
-					globalUser.id = data.data._id;
+					globalUser._id = data.data._id;
 					console.log("It's response!");
 				}
 			});
@@ -80,7 +80,8 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 		};
 
 		$scope.createLesson = function () {
-			User.addlesson($scope.studentUserName, $scope.user.uname, $scope.languag, $scope.date, $scope.tim).then(function (data) {
+			User.addlesson($scope.studentUserName, $scope.user._id, $scope.languag, $scope.date, $scope.tim).then(function (data) {
+				console.log(data.data);
 				if (data.data == 500) {
 					$('p#error').remove();
 					$('<p>Error! Invalid user name of student!</p>').attr('id','error').insertBefore('div#inviz');

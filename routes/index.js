@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Lesson = require('../models/lessons');
 var User = require('../models/user');
-var i = 1;
+
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -21,14 +21,6 @@ module.exports = function(passport){
 		res.sendfile("public/app/index.html");
 	});
 	
-
-	/* Handle Login POST */
-	// router.post('/login', passport.authenticate('login', {
-	// 	successRedirect: '/home',
-	// 	failureRedirect: '/',
-	// 	failureFlash : true  
-	// }));
-
 	router.post('/signin', function(req, res, next) {
 		//console.log(req.body);
 		User.findOne({ 'username' :  req.param('username') }, function(err, user){
@@ -68,40 +60,35 @@ module.exports = function(passport){
 	  // })(req, res, next);
 	});
 
+	router.get('/addlesson', function(req, res){
 
-	/*router.post('/login', function(req, res){
-		User.findOne({ 'username' :  req.param('username') }, function(err, user){
-                    // In case of any error, return using the done method
-                    if (err){
-                        console.log('Error in SignIn: '+err);
-                        return done(err);
-                    }
-                    // already exists
-                    if (user) {
-                    	if(user.password == req.param('password'))
-                    		res.json(user);
-                        //return done(null, false, req.flash('message','User Already Exists'));
-                    } else {
-                        
-                    }
-                });		
-	});*/
-
-	router.get('/lesson', function(req, res){
-		var newLesson = new Lesson();
-		newLesson.language = "English lesson " + i;
-
-		newLesson.save(function(err) {
-                            if (err){
-                                console.log('Error in Saving lesson: '+err);  
-                                throw err;  
-                            }
-                            console.log('Lesson ' + i + ' Registration succesful');
-                            i++;    
-                            return res.end();
-                        });
-
-	});
+            User.findOne({ 'username' :  req.param('studentUserName') }, function(err, userStudent){
+                        // In case of any error, return using the done method
+                        if (err){
+                            console.log('Error in reqistrate new lesson: '+err);
+                            return done(err);
+                        }
+                        if (userStudent) {
+                            console.log("Such student is finded");
+                            var newLesson = new Lesson();
+                            newLesson.idStudent = userStudent._id;
+                            newLesson.idTeacher = req.param('idTeacher');
+                            newLesson.languag = req.param('languag');
+                            newLesson.date = req.param('date');
+                            newLesson.tim = req.param('tim');
+                            User.findOne({ '_id' :  req.param('idTeacher') }, function(err, userTeacher){
+                                    if (userTeacher) {
+                                        res.json({studentUserName: userStudent.username, teacherUserName: userTeacher.username,
+                                            languag: req.param('languag'), date: req.param('date'), tim: req.param('tim')});
+                                    }
+                                });
+                            
+                        } else {
+                            console.log("Such student is  not finded");
+                            res.json(500);
+                        }
+            });
+    });
 
 router.post('/signup', function(req, res){
 		User.findOne({ 'username' :  req.param('username') }, function(err, user){

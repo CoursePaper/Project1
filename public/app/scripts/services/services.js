@@ -58,13 +58,13 @@ registrationServices.service('User', ['$http', '$q',
  		});
  	}
 
- 	function addlesson () {
+ 	function addlesson (studentUserName, idTeacher, languag, date, tim) {
  		return $http({
- 			method: 'post',
+ 			method: 'get',
  			url: 'addlesson',
  			params: {
  				studentUserName: studentUserName,
- 				teacherUserName: teacherUserName,
+ 				idTeacher: idTeacher,
  				languag: languag,
  				date: date,
  				tim: tim 
