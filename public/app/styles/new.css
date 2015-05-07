@@ -6,6 +6,10 @@ section > h2 {
  margin-bottom: 20px;
  color: #1bc5a3;
 }
+section.login-form,
+.tile {
+  box-shadow: 2px 2px 5px #525252;
+}
 #ngview {
   padding-top: 50px;
   min-height: 800px;
@@ -84,19 +88,15 @@ table thead tr:nth-child(2) {
   list-style-type: none;
 
  }
- div#container {
-height: 480px;
-width: 640px;
-position: absolute;
-z-index: 1;
-top: 272px;
-background: #222;
-overflow: hidden;
-}
 video {
-  position: relative;
+  /*position: relative;*/
   z-index: 2;
   margin: auto;
+  border-radius: 6px;
+}
+#remoteVideo {
+  height: 150px;
+  width: 200px;
 }
 #subVideo {
   height: 150px;
@@ -104,26 +104,30 @@ video {
   border: 2px solid black;
   float: right;
   position: absolute;
-  z-index: 5;
-  top: 600px;
-  margin-left: 440px;
+  z-index: 10;
+  /*top: 600px;*/
+ /* margin-left: 440px;*/
   background: grey;
   overflow: hidden;
+  border-radius: 6px;
+  top: 24px;
+  right: 477px;
 }
 div#container {
   height: 480px;
   width: 640px;
-  position: absolute;
+  /*position: absolute;*/
   z-index: 1;
-  top: 272px;
+ /* top: 272px;*/
   background: #222;
   overflow: hidden;
+  border-radius: 6px;
 }
 div.screen {
-  height: 480px;
+  /*height: 480px;
   width: 640px;
   margin: auto;
-  padding-top: 49px;
+  padding-top: 49px;*/
 }
 section h4,
 section p {
@@ -499,7 +503,8 @@ body {
   line-height: 1.72222;
   color: #34495e;
   /*background-color: #1abc9c;*/
-  background-color: #fff;
+  /*background-color: #fff;*/
+  background: url(../images/wallpaper.jpg) 100% 100%;
   }
 a {
   color: #16a085;
@@ -1750,6 +1755,7 @@ fieldset[disabled] .select2-search input[type="text"] + .form-control-feedback,
 .form-group {
   position: relative;
   margin-bottom: 20px;
+  display: block;
   }
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -6330,3 +6336,53 @@ footer p {
     }
   }
 /*# sourceMappingURL=flat-ui.css.map */
+
+ .wchat {
+  background-color: white;
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  float: right;
+  height: 480px;
+  min-width: 430px;
+  border-radius: 6px;
+  overflow: auto;
+  padding: 5px 10px 55px 10px;
+  border: 1px solid #bac1c8;
+ }
+.wchat p { 
+  text-align: left;
+}
+.chat {
+  float: right;
+  position: absolute;
+  z-index: 3;
+  padding: 0px;
+  left: 690px;
+  top: 455px;
+  display: block;
+  z-index: 5;
+ }
+
+.mes {
+  height: 50px;
+  border-radius: 0;
+  border: none;
+  width: 430px;
+  position: absolute;
+  /*top: 425px;*/
+  padding: 0;
+  border: 1px solid #bac1c8;
+  border-radius: 6px;
+  padding: 5px;
+}
+.send {
+  position: absolute;
+  float: right;
+  height: 50px;
+  width: 80px;
+  padding: 0;
+  /*top: 425px;*/
+  right: -430px;
+  border-radius: 6px;
+}

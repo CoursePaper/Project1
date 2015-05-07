@@ -29,7 +29,8 @@ registrationServices.service('User', ['$http', '$q',
  	return ({
  		registration: registration,
  		enterence: enterence,
- 		addlesson: addlesson
+ 		addlesson: addlesson,
+ 		loadlessons: loadlessons
  	});
 
  	function registration (username, firstname, lastname, useremail, password, country) {
@@ -68,6 +69,16 @@ registrationServices.service('User', ['$http', '$q',
  				languag: languag,
  				date: date,
  				tim: tim 
+ 			}
+ 		});
+ 	}
+
+ 	function loadlessons (username) {
+ 		return $http({
+ 			methid: 'post',
+ 			url: 'loadlesson',
+ 			params: {
+ 				username: username
  			}
  		});
  	}

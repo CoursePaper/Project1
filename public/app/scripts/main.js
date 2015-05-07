@@ -36,4 +36,4 @@ function start(){
   navigator.getUserMedia({video:true}, successCallback, errorCallback);
   console.log('after GUM');
 }
-start();
+//start();
