@@ -2,9 +2,9 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Lesson',{
-	idStudent: String,
-	idTeacher: String,
+	student: { idStudent: String, studentUserName: String},
+	teacher: { idTeacher: String, teacherUserName: String },
 	languag: String,
-	date: String,
+	date: { day: String, month: String, year: String },
 	tim: String
 });

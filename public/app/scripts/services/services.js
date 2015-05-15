@@ -73,12 +73,12 @@ registrationServices.service('User', ['$http', '$q',
  		});
  	}
 
- 	function loadlessons (username) {
+ 	function loadlessons (userId) {
  		return $http({
- 			methid: 'post',
- 			url: 'loadlesson',
+ 			methid: 'get',
+ 			url: 'sendLesson',
  			params: {
- 				username: username
+ 				userId: userId
  			}
  		});
  	}

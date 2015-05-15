@@ -520,7 +520,7 @@ a:focus {
 a:focus {
   outline: none;
   }
-.img-rounded {
+/*.img-rounded {
   border-radius: 6px;
   }
 .img-thumbnail {
@@ -534,8 +534,8 @@ a:focus {
   border-radius: 6px;
   -webkit-transition: all .25s ease-in-out;
           transition: all .25s ease-in-out;
-  }
-.comment {
+  }*/
+/*.comment {
   text-align: left;
   margin-bottom: 10px;
   font-size: 15px;
@@ -547,7 +547,7 @@ a:focus {
   font-size: 15px;
   font-style: italic;
   line-height: 1.2;
-  }
+  }*/
 h1,
 h2,
 h3,
@@ -565,7 +565,7 @@ h6,
   line-height: 1.1;
   color: inherit;
   }
-h1 small,
+/*h1 small,
 h2 small,
 h3 small,
 h4 small,
@@ -578,7 +578,7 @@ h6 small,
 .h5 small,
 .h6 small {
   color: #e7e9ec;
-  }
+  }*/
 h1,
 h2,
 h3 {
@@ -627,7 +627,7 @@ p {
   font-size: 18px;
   line-height: 1.72222;
   }
-.lead {
+/*.lead {
   margin-bottom: 30px;
   font-size: 28px;
   font-weight: 300;
@@ -651,7 +651,7 @@ small,
   }
 .text-primary {
   color: #1abc9c;
-  }
+  }*/
 a.text-primary:hover {
   color: #148f77;
   }
@@ -734,10 +734,10 @@ dd {
     margin-left: 180px;
     }
   }
-abbr[title],
+/*abbr[title],
 abbr[data-original-title] {
   border-bottom: 1px dotted #bdc3c7;
-  }
+  }*/
 blockquote {
   padding: 0 0 0 16px;
   margin: 0 0 30px;
@@ -749,7 +749,7 @@ blockquote p {
   font-weight: normal;
   line-height: 1.55;
   }
-blockquote small,
+/*blockquote small,
 blockquote .small {
   font-size: 18px;
   font-style: italic;
@@ -768,8 +768,8 @@ blockquote.pull-right {
   }
 blockquote.pull-right small:after {
   content: "";
-  }
-address {
+  }*/
+/*address {
   margin-bottom: 30px;
   line-height: 1.72222;
   }
@@ -808,7 +808,7 @@ pre {
   background-color: #fff;
   border: 2px solid #e7e9ec;
   border-radius: 6px;
-  }
+  }*/
 .pre-scrollable {
   max-height: 340px;
   }
@@ -1413,7 +1413,7 @@ fieldset[disabled] .btn-link:focus {
   margin: 0 1px;
   font-size: 16px;
   }
-legend {
+/*legend {
   display: block;
   width: 100%;
   padding: 0;
@@ -1422,7 +1422,7 @@ legend {
   line-height: inherit;
   color: inherit;
   border-bottom: none;
-  }
+  }*/
 textarea {
   padding: 5px 11px;
   font-size: 20px;
@@ -2409,7 +2409,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .form-inline .radio {
   padding-left: 32px;
   }
-.bootstrap-tagsinput {
+/*.bootstrap-tagsinput {
   padding: 6px 1px 1px 6px;
   margin-bottom: 18px;
   font-size: 0;
@@ -2555,7 +2555,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   color: #fff;
   cursor: pointer;
   background-color: #16a085;
-  }
+  }*/
 .progress {
   height: 12px;
   background: #ebedef;

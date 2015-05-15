@@ -24,15 +24,25 @@
 				<td>Time</td>
 				<td>Language</td>
 				<td>Teacher</td>
+				<td>Student</td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr ng-repeat="i in lesArray">
+				<td>{{$index+1}}</td>
+				<td>{{i.date}}</td>
+				<td>{{i.tim}}</td>
+				<td>{{i.languag}}</td>
+				<td><a href="#">{{i.teacher.teacheUserNAme}}</a></td>
+				<td><a href="#">{{i.student.studentUserName}}</a></td>
+			</tr>
+			<!-- <tr>
 				<td>i</td>
 				<td>01.01.2001</td>
 				<td>13.27</td>
 				<td>Deutch</td>
 				<td><a href="#">MyTeacher</a></td>
+				<td><a href="#">MyStudent</a></td>
 			</tr>
 			<tr>
 				<td>i</td>
@@ -40,6 +50,7 @@
 				<td>12.00</td>
 				<td>English</td>
 				<td><a href="#">ElizabethII</a></td>
+				<td><a href="#">MyStudent</a></td>
 			</tr>
 			<tr>
 				<td>i</td>
@@ -47,6 +58,7 @@
 				<td>17.23</td>
 				<td>Deutch</td>
 				<td><a href="#">J.S.Bach</a></td>
+				<td><a href="#">MyStudent</a></td>
 			</tr>
 			<tr>
 				<td>i</td>
@@ -54,6 +66,7 @@
 				<td>13.27</td>
 				<td>French</td>
 				<td><a href="#">NapoleonB</a></td>
+				<td><a href="#">MyStudent</a></td>
 			</tr>
 			<tr>
 				<td>i</td>
@@ -61,11 +74,13 @@
 				<td>13.27</td>
 				<td>Scandinavian</td>
 				<td><a href="#">Odin265</a></td>
-			</tr>
+				<td><a href="#">MyStudent</a></td>
+			</tr> -->
 		</tbody>
 	</table>
 <!-- </section>
 <section ng-controller="rCtrl"> -->
+	<!-- <button class="btn btn-lg btn-primary" ng-click="loadLessons()">load Lessons</button> -->
 	<div id="addlesson" class="btn btn-primary" ng-click="addLesson()">Create new lesson</div>
 	<div id="inviz">
 		<form class="login-form" ng-submit="createLesson()">
@@ -76,14 +91,19 @@
         	<div class="form-group">
           		<input id="login-name _login" type="text" class="form-control login-field" placeholder="Enter language" ng-model="languag" required />
       			<label class="login-field-icon fui-user"></label>
+      			<!-- <select id="login-name _login" class="form-control login-field">
+      				<option>English</option>
+      				<option>Deutch</option>
+      				<option>Franch</option>
+      			</select> -->
         	</div>
         	<div class="form-group">
           		<input id="login-name _login" type="text" class="form-control login-field" placeholder="Enter date" ng-model="date" required />
-      			<label class="login-field-icon fui-user"></label>
+      			<!-- <label class="login-field-icon fui-user"></label> -->
         	</div>
         	<div class="form-group">
           		<input id="login-name _login" type="text" class="form-control login-field" placeholder="Enter time" ng-model="tim" required />
-      			<label class="login-field-icon fui-user"></label>
+      			<!-- <label class="login-field-icon fui-user"></label> -->
         	</div>
             <button id="login" type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
       </form>
@@ -119,6 +139,6 @@
 	</div>
 	<input class="btn btn-lg btn-primary" type="submit" value="Send">
 </section>
-<section ng-controller="rCtrl">
+<!-- <section ng-controller="rCtrl">
 	<button class="btn btn-lg btn-primary" ng-click="loadLessons()">load Lessons</button>
-</section>
+</section> -->

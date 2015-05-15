@@ -12,51 +12,11 @@ var globalLesson = {
 	date: 0,
 	tim: 0
 }
+var lessonsArray = [];
 var rCtrl = angular.module('rCtrl', ['registrationServices']);
 
 rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 	function ($location, $scope, User) {
-
-		$scope.main = function () {
-			function hasGetUserMedia() {
-			  return !!(navigator.getUserMedia ||
-			    navigator.webkitGetUserMedia ||
-			    navigator.mozGetUserMedia ||
-			    navigator.msGetUserMedia);
-			}
-			if (hasGetUserMedia) {
-			  console.log('GUM is supported in your brouser!');
-			}
-			else {
-			  console.log('GUM is NOT supported in your brouser!');
-			}
-
-			//////////////////////////////////
-			var videoElement = document.querySelector('#container video');
-			var subVideoElement = document.querySelector('#subVideo video');
-
-			//navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-			function successCallback(stream) {
-			  window.stream = stream;
-			  videoElement.src = window.URL.createObjectURL(stream);
-			  videoElement.play();
-			  subVideoElement.src = window.URL.createObjectURL(stream);
-			  subVideoElement.play();
-			  console.log('U should see the image of you camera');
-			}
-
-			function errorCallback(error){
-			  console.log('navigator.getUserMedia error: ', error);
-			}
-
-			function start(){
-			  navigator.getUserMedia({video:true}, successCallback, errorCallback);
-			  console.log('after GUM');
-			}
-			start();
-		}
-
 		$scope.signUp = function () {
 			User.registration($scope.username, $scope.firstname, $scope.lastname,
 				$scope.useremail, $scope.password, $scope.country).then(function (data) {
@@ -94,6 +54,11 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 					globalUser._id = data.data._id;
 				}
 			});
+			User.loadlessons($scope.user._id).then(function (data){
+				lessonsArray = data.data;
+				console.log(data);
+				$scope.lesArray = lessonsArray;
+			});
 		};
 		$scope.user = globalUser;
 
@@ -114,29 +79,36 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 					$('p#error').remove();
 					$('<p>Error! Invalid user name of student!</p>').attr('id','error').insertBefore('div#inviz');
 				} else {
-					globalLesson.studentUserName = data.data.studentUserName;
-					globalLesson.teacherUserName = data.data.teacherUserName;
-					globalLesson.languag = data.data.languag;
-					globalLesson.date = data.data.date;
-					globalLesson.tim = data.data.tim;
-
-					$('p#error').remove();
-					$('<p>Success! The lesson were added!</p>').attr('id','error').insertBefore('form');
+					if (data.data == 400) {
+						$('p#error').remove();
+						$('<p>Error! Such lesson is already exist!</p>').attr('id','error').insertBefore('div#inviz');
+					} else {
+						globalLesson.studentUserName = data.data.student.studentUserName;
+						globalLesson.teacherUserName = data.data.teacher.teacherUserName;
+						globalLesson.languag = data.data.languag;
+						globalLesson.date = (data.data.date.day + '.' + data.data.date.month + '.' + data.data.date.year);
+						globalLesson.tim = data.data.tim;
+						console.log(data.data);
+						$('p#error').remove();
+						$('<p>Success! The lesson were added!</p>').attr('id','error').insertBefore('form.login-form');
+					}
 				}
 			});
 		}
 		$scope.lesson = globalLesson;
 
-		$scope.enterLesson = function (data) {
+		// $scope.enterLesson = function () {
 
-		}
+		// }
 
-		$scope.loadLessons = function (data) {
-			User.loadlessons($scope.user.username).then(function(){
-
+		$scope.loadLessons = function () {
+			User.loadlessons($scope.user._id).then(function (data){
+				lessonsArray = data.data;
+				console.log(data);
+				$scope.lesArray = lessonsArray;
 			});
-
 		}
+		$scope.lesArray = lessonsArray;
 
 		$scope.main = function () {
 			function hasGetUserMedia() {
@@ -162,6 +134,24 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 			  subVideoElement.src = window.URL.createObjectURL(stream);
 			  subVideoElement.play();
 			  console.log('U should see the image of you camera');
+
+			 //  $scope.peer = new Peer($scope.user._id);
+			 //  // Call a peer, providing our mediaStream
+			 //  if ($scope.lesson.studentUserName == $scope.user._id) {
+			 //  	Id = $scope.lesson.teacherUserName;
+			 //  } else {
+			 //  	Id = $scope.lesson.studentUserName;
+			 //  }
+			 //  $scope.call = peer.call($scope.lesson.Id, stream);
+			 //  //answer
+			 //  peer.on(call, function(call) {
+				// // Answer the call, providing our mediaStream
+				// call.answer(stream);
+			 //  });
+			 //  call.on(stream, function(stream) {
+			 //     // `stream` is the MediaStream of the remote peer.
+				//  // Here you'd add it to an HTML video/canvas element.
+			 //  });
 			}
 
 			function errorCallback(error){
@@ -205,41 +195,3 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 // conn.on('open', function(){
 //   conn.send('hi!');
 // });
-
-// $scope.main = function () {
-// 			// function hasGetUserMedia() {
-// 			// return !!(navigator.getUserMedia ||
-// 			// 	navigator.webkitGetUserMedia ||
-// 			// 	navigator.mozGetUserMedia ||
-// 			// 	navigator.msGetUserMedia);
-// 			// }
-// 			// if (hasGetUserMedia) {
-// 			// 	console.log('GUM is supported in your brouser!');
-// 			// }
-// 			// else {
-// 			// 	console.log('GUM is NOT supported in your brouser!');
-// 			// }
-// 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-// 			$scope.videoElement = document.querySelector('#container video');
-// 			$scope.subVideoElement = document.querySelector('#subVideo video');
-
-// 			$scope.successCallback = function (stream) {
-// 			  window.stream = stream;
-// 			  $scope.videoElement.src = window.URL.createObjectURL(stream);
-// 			  $scope.videoElement.play();
-// 			  subVideoElement.src = window.URL.createObjectURL(stream);
-// 			  subVideoElement.play();
-// 			  console.log('U should see the image of you camera');
-// 			}
-
-// 			$scope.errorCallback = function (error){
-// 			  console.log('navigator.getUserMedia error: ', error);
-// 			}
-
-// 			$scope.start = function (){
-// 			  navigator.getUserMedia({video:true}, $scope.successCallback, $scope.errorCallback);
-// 			}
-// 			console.log('before GUM');
-// 			$scope.start();
-// 			console.log('after GUM');
-// 		}
