@@ -13,6 +13,17 @@ var globalLesson = {
 	tim: 0
 }
 var lessonsArray = [];
+var template = [{
+	date: '---',
+	tim: '---',
+	languag: '---',
+	teacher: {
+		teacheUserNAme: '---'
+	},
+	student: {
+		studentUserName: '---'
+	}
+}]
 var rCtrl = angular.module('rCtrl', ['registrationServices']);
 
 rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
@@ -52,25 +63,18 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 					globalUser.ufname = data.data.firstName;
 					globalUser.ucountry = data.data.country;
 					globalUser._id = data.data._id;
+					//loadLessons();
 				}
-			});
-			User.loadlessons($scope.user._id).then(function (data){
-				lessonsArray = data.data;
-				console.log(data);
-				$scope.lesArray = lessonsArray;
 			});
 		};
 		$scope.user = globalUser;
 
-		$scope.addLesson = function () {
-			if ($('#addlesson').text() == "Close") {
-				$('#inviz').css("display", "none");
-				$('#addlesson').text("Create new lesson");
-			} else {
-				$('#inviz').css("display", "block");
-				$('#addlesson').text("Close");
-			}
+		$scope.hideCreatingLessons = function () {
+			$('#inviz').css("display", "none");
 		};
+		$scope.openCreationLessons = function() {
+			$('#inviz').css("display", "block");
+		}
 
 		$scope.createLesson = function () {
 			User.addlesson($scope.studentUserName, $scope.user._id, $scope.languag, $scope.date, $scope.tim).then(function (data) {
@@ -91,6 +95,7 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 						console.log(data.data);
 						$('p#error').remove();
 						$('<p>Success! The lesson were added!</p>').attr('id','error').insertBefore('form.login-form');
+						$scope.loadLessons();
 					}
 				}
 			});
@@ -100,12 +105,17 @@ rCtrl.controller('rCtrl', ['$location', '$scope', 'User',
 		// $scope.enterLesson = function () {
 
 		// }
-
 		$scope.loadLessons = function () {
 			User.loadlessons($scope.user._id).then(function (data){
-				lessonsArray = data.data;
-				console.log(data);
-				$scope.lesArray = lessonsArray;
+				if (data.data != 500) {
+					lessonsArray = data.data;
+					//delete lessonsArray[lessonsArray-1];
+					console.log(data);
+					$scope.lesArray = lessonsArray;
+				} else {
+					lessonsArray = template;
+					$scope.lesArray = template;
+				}
 			});
 		}
 		$scope.lesArray = lessonsArray;

@@ -150,16 +150,21 @@ module.exports = function(passport){
     });
 
 router.get('/sendLesson', function(req, res){
-    var lessonsArray = [];
+    var lessonsArray;
     //Lesson.find({'teacher.idTeacher': req.param('userId')}, function(err, lessons){
-    Lesson.find({'teacher.idTeacher': '55549e7837f10edc0caa2de2'}, function(err, lessons){
+    Lesson.find({'teacher.idTeacher': req.param('userId')}, function(err, lessons){
         Lesson.find({'student.idStudent': req.param('userId')}, function(err, lessons){
-            lessonsArray.push(lessons);
-            res.json(lessonsArray);
-            console.log(lessonsArray);
+            console.log("lessons where student" + lessons.length);
+            if (lessons.length =! 0)
+                lessonsArray.push(lessons);
+            if(lessonsArray == 0)     
+                res.json(500);
+            else res.json(lessonsArray);
         });
-        lessonsArray = lessons;
-        //console.log(lessons);
+        console.log("lessons where teacher" + lessons.length);
+        if(lessons){
+            lessonsArray = lessons;
+        }
         //res.json(lessonsArray);
     });
     //console.log(req.param('userId'));

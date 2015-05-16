@@ -10,6 +10,24 @@ section.login-form,
 .tile {
   box-shadow: 2px 2px 5px #525252;
 }
+.bb {
+  float: left;
+  margin-bottom: 10px;
+  width: 200px;
+}
+.buttons div {
+  display: inline-block;
+  float: right;
+  width: 150px;
+  margin-top: -50px;
+  margin-bottom: 0px;
+}
+.buttons {
+  display: inline-block;
+  margin-top: -100px;
+  float: right;
+  width: 200px;
+}
 #ngview {
   padding-top: 50px;
   min-height: 800px;
@@ -17,7 +35,8 @@ section.login-form,
  #l {
   display: inline-block;
  }
- #inviz {
+ #inviz,
+ #inviz1 {
   display: none;
  }
  #addlesson {
