@@ -61,6 +61,96 @@ module.exports = function(passport){
 	  // })(req, res, next);
 	});
 
+
+
+
+    
+
+
+
+
+    router.get('/chat', function(req, res){
+        Lesson.findOne({'_id': '5558a75bd0767b7919bde698'/*req.param('idLesson')*/}, function(err, lesson){
+            if (err){
+                console.log("Error in find lesson: " + err);
+                return done(err);
+            }
+            if (lesson){
+                lesson.chat.push({username: 'qwert'/*req.param('username')*/, message: 'asdfg'/*req.param('message')*/, stat: 'asdfg' });
+                lesson.save(function(err) {
+                    if (err){
+                        console.log('Error in saving message: '+err);  
+                        throw err;  
+                    }
+                    res.json("ok");
+                    console.log('New message save');    
+                });
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+    router.get('/sendMeMessages', function(req, res){
+        Lesson.findOne({'_id': req.param('idLesson')}, function(err, lesson){
+            if (err){
+                console.log("Error in find lesson: " + err);
+                return done(err);
+            }
+            if (lesson){
+                var messageArray = [];
+                for (var i = 0; i < lesson.chat.length; i++){
+                    if(lesson.chat[i].username != req.param('username') && lesson.chat[i].status == false){
+                        lesson.chat[i].status = true;
+                        messageArray.push(lesson.chat[i]);
+                        lesson.save(function(err) {
+                            if (err){
+                                console.log('Error in Saving status of message: '+err);  
+                                throw err;  
+                            }
+                            console.log('New message add in array');
+                            console.log(messageArray);
+                         });                  
+                    }
+                }
+                res.json(messageArray);
+            }
+        });
+    });
+
+
+
+
+
+
+    router.get('/chekingUsernameAndIdLesson', function(req, res){
+        Lesson.findOne({_'id': req.param('idlesson')}, function(err, lesson){
+            if (err){
+                console.log("Error in find lesson: " + err);
+                return done(err);
+            }
+            if (lesson){
+                if(lesson.student.studentUserName == req.param('username') || lesson.teacher.teacherUserName = req.param('username')){
+                    res.json(lesson);
+                }
+                else res.json(500);
+            }
+        });
+    });
+
+
+
+
+
+
+
 	router.get('/addlesson', function(req, res){
 
             User.findOne({ 'username' :  req.param('studentUserName') }, function(err, userStudent){
@@ -75,6 +165,7 @@ module.exports = function(passport){
                             newLesson.student.idStudent = userStudent._id;
                             newLesson.student.studentUserName = userStudent.username;
                             newLesson.teacher.idTeacher = req.param('idTeacher');
+                            newLesson.chat = [];
                             User.findOne({ '_id': req.param('idTeacher') }, function(err, user){
                                 if(user){
                                     newLesson.teacher.teacherUserName = user.username;
@@ -151,28 +242,30 @@ module.exports = function(passport){
 
 router.get('/sendLesson', function(req, res){
     var lessonsArray;
-    //Lesson.find({'teacher.idTeacher': req.param('userId')}, function(err, lessons){
     Lesson.find({'teacher.idTeacher': req.param('userId')}, function(err, lessons){
         Lesson.find({'student.idStudent': req.param('userId')}, function(err, lessons){
             console.log("lessons where student" + lessons.length);
-            if (lessons.length =! 0)
+            if (lessons.length == 0){
+                console.log("---------");
+                console.log("No find lessons where student");
+                console.log("---------");
+            }
+            else {
                 lessonsArray.push(lessons);
-            if(lessonsArray == 0)     
+            }
+            if(lessonsArray.length == 0)     
                 res.json(500);
-            else res.json(lessonsArray);
+            else {
+                res.json(lessonsArray);
+                console.log(lessonsArray);
+            }
         });
         console.log("lessons where teacher" + lessons.length);
         if(lessons){
             lessonsArray = lessons;
         }
-        //res.json(lessonsArray);
     });
-    //console.log(req.param('userId'));
-    // Lesson.find({'student.idStudent': req.param('userId')}, function(err, lessons){
-    //     lessonsArray.push(lessons);
-    // });
     console.log('finding lessons');
-    //console.log(lessonsArray);
    
 });
     

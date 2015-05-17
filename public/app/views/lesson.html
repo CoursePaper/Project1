@@ -19,53 +19,26 @@
       <button id="callButton">Call</button>
       <button id="hangupButton">Hang Up</button>
     </div> -->
-    <div class="wchat">
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    	<p><strong>blablalba:</strong> rftgykhjk</p>
-    </div>
-    <form class="chat">
+    <form class="chat" ng-submit="sendMessage()">
+        <div class="wchat">
+        	
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        	<p><strong>blablalba:</strong> rftgykhjk</p>
+        </div>
+    
 	    <div class="form-group">
-			<input type="text" placeholder="You message..." class="form-control mes"/>
+			<input type="text" ng-model="message" name="message" placeholder="You message..." class="form-control mes" required />
 			<!-- <label class="login-field-icon fui-new"></label> -->
-			<button class="btn btn-primary send">Send</button>
+			<button type="submit" class="btn btn-primary send">Send</button>
 		</div>
 	</form>
 
