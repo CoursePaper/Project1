@@ -131,7 +131,7 @@ module.exports = function(passport){
 
 
     router.get('/chekingUsernameAndIdLesson', function(req, res){
-        Lesson.findOne({_'id': req.param('idlesson')}, function(err, lesson){
+        Lesson.findOne({'_id': req.param('idlesson')}, function(err, lesson){
             if (err){
                 console.log("Error in find lesson: " + err);
                 return done(err);
